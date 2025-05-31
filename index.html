@@ -9,20 +9,21 @@
 <body>
     <nav>
         <div class="navbar-container">
-            <div class="navbar-image">
-                <img src="ima.png" alt="not found">
-            </div>
-            <div class="hamburger">☰</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#About us">About Us</a></li>
-                <li><a href="#Services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><span class="close-btn">✕</span></li>
-            </ul>
-        </div>
+  <div class="navbar-image">
+    <img src="ima.png" alt="ARCHY Logo">
+  </div>
+  <div class="hamburger">☰</div>
+  <ul class="navbar-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="news.html">News</a></li>
+    <li><a href="contect.html">Contact</a></li>
+    <li><span class="close-btn">✕</span></li>
+  </ul>
+</div>
+
         <hr id="hr-tag" style="display: block;">
     </nav>
 
@@ -210,26 +211,203 @@ Throughout its history, SOM has been recognized for its innovative designs and c
     <img src="img2.jpg" alt="Architecture 2">
   </div>
 </div>
+<div class="paragraph">
+            <div class="service-link-container">
+                <a href="Latest-Projects" class="service-link">Latest Projects</a>
+            </div>
+        </div>
+    <div class="text-container">
+        <div class="title-large">
+            "Building a legacy at a one time"
+        </div>
+        <hr>
+    </div>
+     <div class="description-text">
+                Whether you're an architect, designer, or simply someone with an interest in the built 
+                environment, our latest projects are sure to inspire and challenge you.
+        </div>
+      <div class="hero">
+    <img id="hero-img" src="arches.jpg" alt="The Arches">
+    <div class="overlay">
+      <h1 id="hero-title">The Arches</h1>
+    </div>
+  </div>
 
+  <div class="carousel">
+    <div class="card" onclick="changeSlide('arches.jpg', 'The Arches')">
+      <img src="arches.jpg" alt="The Arches">
+      <div>
+        <h3>The Arches</h3>
+        <p>Modern house building.</p>
+      </div>
+    </div>
+    <div class="card" onclick="changeSlide('multifamily.jpg', 'Multi-Family Housing')">
+      <img src="multifamily.jpg" alt="Multi-Family Housing">
+      <div>
+        <h3>Multi-Family Housing</h3>
+        <p>The Oaks</p>
+      </div>
+    </div>
+    <div class="card" onclick="changeSlide('dreamhouse.jpg', 'Dream House')">
+      <img src="dreamhouse.jpg" alt="Dream House">
+      <div>
+        <h3>Dream House</h3>
+        <p>Modern Farmhouse</p>
+      </div>
+    </div>
+  </div>
+   <div class="paragraph">
+            <div class="service-link-container">
+                <a href="#Latest News" class="service-link">Latest News</a>
+            </div>
+        </div>
+    <div class="text-container">
+        <div class="title-large">
+            "Latest News"
+        </div>
+        <hr>
+    </div>
+    <div class="description-text">
+        
+          "Our team is comprised of experienced architects, designers, and project managers
+           who share a common goal of creating exceptional spaces.
+    </div>
+
+  <div class="slider-container">
+    <button class="nav left" onclick="scrollSlider(-1)">&#8592;</button>
+    
+    <div class="slider" id="slider">
+      <div class="slide">
+        <img src="marvel.jpg" alt="Architectural Marvels">
+        <div class="meta">
+          <span>May 18, 2023</span> / <span>News</span>
+        </div>
+        <h3>Architectural Marvels</h3>
+      </div>
+
+      <div class="slide">
+        <img src="modern.jpg" alt="Modern Architecture">
+        <div class="meta">
+          <span>May 15, 2023</span> / <span>Insights</span>
+        </div>
+        <h3>Exploring the Evolution of Modern Architecture</h3>
+      </div>
+
+      <div class="slide">
+        <img src="greekstyle.jpg" alt="White Architecture">
+        <div class="meta">
+          <span>May 12, 2023</span> / <span>Insights</span>
+        </div>
+        <h3>The Evolution of Modern Architecture</h3>
+      </div>
+    </div>
+
+    <button class="nav right" onclick="scrollSlider(1)">&#8594;</button>
+  </div>
+
+  <div class="pagination">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+    <div class="text-container">
+        <div class="title-large">
+            "Meet the team behind the designs"
+        </div>
+        <hr>
+    </div>
+    <div class="description-text">
+        
+        "Our team is comprised of experienced architects, designers, and project
+         managers who share a common goal of creating exceptional spaces."
+    </div>
+    
+
+  <section class="team-section">
+    <div class="team-member">
+      <img src="woman1.jpg" alt="Team Member 1">
+    </div>
+    <div class="team-member">
+      <img src="man.jpg" alt="Team Member 2">
+    </div>
+    <div class="team-member">
+      <img src="woman2.jpg" alt="Team Member 3">
+    </div>
+  </section>
+    <div class="paragraph">
+            <div class="service-link-container">
+                <a href="Contact Us" class="service-link">Contact Us</a>
+            </div>
+        </div>
+    <div class="text-container">
+        <div class="title-large">
+            "Stay Connected"
+        </div>
+        <hr>
+    </div>
+    <div class="description-text">
+        
+          "Stay connected with our team and never miss a design update, industry news, or special offer.
+           Join our community of design enthusiasts."
+.
+    </div>
+    <section class="hero">
+    <div class="content">
+      <h1>Have a project in mind?</h1>
+      <p>Do not hesitate to say Hello</p>
+      <a href="#" class="cta-button">Let's Talk <span>➝</span></a>
+    </div>
+  </section>
+  <section class="contact-section">
+    <div class="contact-container">
+      <div class="office">
+        <h3>Bangalore Office</h3>
+        <p>555-1234<br>
+        info@csk .com<br><br>
+        123 Main Street, Suite 200 City:Chennai<br>
+        State: Tamilnadu</p>
+      </div>
+
+      <div class="office">
+        <h3>Egmore Office</h3>
+        <p>+33 1 23 45 67 89<br>
+        info@archyparis.com<br><br>
+        123 Rue de la Paix, 75002 Chennai, Egmore</p>
+      </div>
+
+      <div class="office">
+        <h3>CHENNAI PARIS</h3>
+        <p>+49 30 12345678<br>
+        info@archyberlin.com<br><br>
+        Mauerstrasse 45, 10117 Chennai, Paris</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    ©2025 CSK INC. - SF
+  </footer>
+
+  
     <script>
         const hamburger = document.querySelector('.hamburger');
-        const navbarLinks = document.querySelector('ul');
-        const closeBtn = document.querySelector('.close-btn');
+const navbarLinks = document.querySelector('.navbar-links');
+const closeBtn = document.querySelector('.close-btn');
 
-        hamburger.addEventListener('click', () => {
-            navbarLinks.classList.toggle('show');
-            document.getElementById("hr-tag").style.display="none";
-        });
+hamburger.addEventListener('click', () => {
+  navbarLinks.classList.add('show');
+});
 
-        closeBtn.addEventListener('click', () => {
-            navbarLinks.classList.remove('show');
-        });
+closeBtn.addEventListener('click', () => {
+  navbarLinks.classList.remove('show');
+});
 
-        navbarLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navbarLinks.classList.remove('show');
-            });
-        });
+navbarLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navbarLinks.classList.remove('show');
+  });
+});
+
         const tabs = document.querySelectorAll(".tab");
   const panels = document.querySelectorAll(".tab-panel");
   const images = document.querySelectorAll(".tab-image");
@@ -251,6 +429,34 @@ Throughout its history, SOM has been recognized for its innovative designs and c
       images[index].classList.add("active");
     });
   });
+  function changeSlide(imageSrc, title) {
+  document.getElementById('hero-img').src = imageSrc;
+  document.getElementById('hero-title').textContent = title;
+}
+  let currentSlide = 0;
+const totalSlides = 3;
+const slider = document.getElementById('slider');
+const dots = document.querySelectorAll('.dot');
+
+function scrollSlider(direction) {
+  currentSlide += direction;
+  if (currentSlide < 0) currentSlide = 0;
+  if (currentSlide > totalSlides - 1) currentSlide = totalSlides - 1;
+
+  slider.scrollTo({
+    left: currentSlide * 320,
+    behavior: 'smooth'
+  });
+
+  updateDots();
+}
+
+function updateDots() {
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide);
+  });
+}
+
     </script>
 </body>
 </html>

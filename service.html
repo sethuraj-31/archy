@@ -1,14 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<style>
 body {
      margin: 0;
      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
      background-size: cover;
      background-position: center;
- }
- img {
-     width: 40px;
-     height: auto;
- }
- .navbar-container {
+}
+.navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,31 +96,148 @@ body {
     padding: 15px 20px;
   }
 }
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  background-color: #f8f8f8;
+  letter-spacing: 2px;
+}
+/* Services Intro Section */
+.services-intro {
+  position: relative;
+  text-align: center;
+  padding: 6rem 2rem 3rem;
+  background: #fff;
+}
+.background-image {
+  background: url('csk.png') center/cover no-repeat;
+  height: 60vh;
+}
+.services-list {
+  background: white;
+  padding: 4rem 2rem;
+}
+.services-list h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+.services-list ul {
+  list-style: none;
+  columns: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.services-list li {
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 20px;
+}
+.services-list li::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
 
- a {
-     text-decoration: none;
-     color: black;
-     padding-right: 30px;
+/* Service Detail Layout */
+.service-detail {
+  padding: 4rem 2rem;
+}
+.service-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  align-items: center;
+}
+.service-item.reverse {
+  flex-direction: row-reverse;
+}
+.service-image {
+  flex: 1 1 45%;
+}
+.service-image img {
+  width: 100%;
+  border-radius: 8px;
+}
+.service-content {
+  flex: 1 1 50%;
+}
+.service-content h3 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+/* Accordion Styles */
+.accordion {
+  border-top: 1px solid #eee;
+}
+.accordion-item {
+  border-bottom: 1px solid #eee;
+}
+.accordion-title {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-title span {
+  font-size: 1.5rem;
+}
+.accordion-content {
+  padding: 0 1rem 1rem;
+  display: none;
+}
+.accordion-item.active .accordion-content {
+  display: block;
+}
+ .text-container {
+     padding: 0 20px;
  }
- hr {
-     width: 90%;
-     margin: 0 auto;
+ .description-text {
+     font-size: 25px;
+     white-space: pre-wrap;
  }
- p, .description-text, .title-large {
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
- }
- .main-content {
-     font-size: 50px;
+ .service-link-container {
      display: flex;
      align-items: center;
-     justify-content: center;
-     height: 90vh;
-     padding: 20px;
-     text-align: center;
+     justify-content: flex-end;
+     padding: 10px 0;
  }
- .title-large {
-     font-size: 120px;
-     line-height: 1.2;
+ .service-link {
+     font-size: 20px;
+ }
+ /* Mobile Styles */
+ @media screen and (max-width: 768px) {
+     .main-content {
+         flex-direction: column;
+         font-size: 24px;
+         height: auto;
+         min-height: 50vh;
+     }
+     .title-large {
+         font-size: 48px;
+     }
+     .text-container {
+         padding: 0 15px;
+         text-align: center;
+     }
+     .description-text {
+         font-size: 16px;
+     }
+     .service-link-container {
+         justify-content: center;
+     }
+     .service-link {
+         font-size: 16px;
+     }
  }
  .text-container {
      padding: 0 20px;
@@ -722,11 +844,183 @@ h3 {
   margin-bottom: 10px;
   font-weight: 600;
 }
+</style>
+<body>
+    <nav>
+        <div class="navbar-container">
+  <div class="navbar-image">
+    <img src="ima.png" alt="ARCHY Logo">
+  </div>
+  <div class="hamburger">☰</div>
+  <ul class="navbar-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="news.html">News</a></li>
+    <li><a href="contect.html">Contact</a></li>
+    <li><span class="close-btn">✕</span></li>
+  </ul>
+</div>
 
-.footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  background-color: #f8f8f8;
-  letter-spacing: 2px;
-}
+        <hr id="hr-tag" style="display: block;">
+    </nav>
+<section class="services-intro">
+  <div class="background-image"></div>
+  <div class="services-list">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Construction Administration</li>
+      <li>Post-Occupancy Evaluation</li>
+      <li>Project Management</li>
+      <li>Feasibility Studies</li>
+      <li>Permitting and Approvals</li>
+      <li>Construction Documents</li>
+      <li>Bidding and Negotiation</li>
+      <li>Conceptual Design</li>
+    </ul>
+  </div>
+</section>
+
+<section class="service-detail">
+  <div class="service-item">
+    <div class="service-image">
+      <img src="csk.png" alt="Architecture White Building" />
+    </div>
+    <div class="service-content">
+      <h3>Collaborative, innovative, and sustainable architectural design solutions for a better world.</h3>
+      <div class="accordion">
+        <div class="accordion-item active">
+          <button class="accordion-title">Construction Administration <span>-</span></button>
+          <div class="accordion-content">
+            <p>
+              Construction administration services are a crucial component of any construction project, and they typically involve overseeing the construction process to ensure that the project is completed according to the client’s specifications, on time, and within budget.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">Post-Occupancy Evaluation <span>+</span></button>
+          <div class="accordion-content">
+            <p>Post-occupancy evaluation ensures ongoing satisfaction and identifies future improvement areas.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">Project Management <span>+</span></button>
+          <div class="accordion-content">
+            <p>Project management includes planning, coordination, and budget control for successful outcomes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-item reverse">
+    <div class="service-content">
+      <h3>Expert services for development and construction.</h3>
+      <div class="accordion">
+        <div class="accordion-item active">
+          <button class="accordion-title">Permitting and Approvals <span>-</span></button>
+          <div class="accordion-content">
+            <p>
+              Permitting and approvals are a critical aspect of the architectural design process, ensuring that the design meets all applicable codes and standards for smooth execution.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">Construction Documents <span>+</span></button>
+          <div class="accordion-content">
+            <p>Detailed blueprints and specifications for construction teams.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">Bidding and Negotiation <span>+</span></button>
+          <div class="accordion-content">
+            <p>Assistance in contractor selection and bid evaluations to ensure competitive pricing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="service-image">
+      <img src="csk.png" alt="Column Architecture Concept" />
+    </div>
+  </div>
+</section>
+<div class="text-container">
+        <div class="title-large" style="font-size: 120px;">
+            "Meet the team behind the designs"
+        </div>
+        <hr>
+    </div>
+    <div class="description-text">
+        
+        "Our team is comprised of experienced architects, designers, and project
+         managers who share a common goal of creating exceptional spaces."
+    </div>
+    
+
+  <section class="team-section">
+    <div class="team-member">
+      <img src="woman1.jpg" alt="Team Member 1">
+    </div>
+    <div class="team-member">
+      <img src="man.jpg" alt="Team Member 2">
+    </div>
+    <div class="team-member">
+      <img src="woman2.jpg" alt="Team Member 3">
+    </div>
+  </section>
+    <div class="paragraph">
+            <div class="service-link-container">
+                <a href="Contact Us" class="service-link">Contact Us</a>
+            </div>
+        </div>
+    <div class="text-container">
+        <div class="title-large">
+            "Stay Connected"
+        </div>
+        <hr>
+    </div>
+    <div class="description-text">
+        
+          "Stay connected with our team and never miss a design update, industry news, or special offer.
+           Join our community of design enthusiasts."
+.
+    </div>
+    <section class="hero">
+    <div class="content">
+      <h1>Have a project in mind?</h1>
+      <p>Do not hesitate to say Hello</p>
+      <a href="#" class="cta-button">Let's Talk <span>➝</span></a>
+    </div>
+  </section>
+  <section class="contact-section">
+    <div class="contact-container">
+      <div class="office">
+        <h3>Bangalore Office</h3>
+        <p>555-1234<br>
+        info@csk .com<br><br>
+        123 Main Street, Suite 200 City:Chennai<br>
+        State: Tamilnadu</p>
+      </div>
+
+      <div class="office">
+        <h3>Egmore Office</h3>
+        <p>+33 1 23 45 67 89<br>
+        info@archyparis.com<br><br>
+        123 Rue de la Paix, 75002 Chennai, Egmore</p>
+      </div>
+
+      <div class="office">
+        <h3>CHENNAI PARIS</h3>
+        <p>+49 30 12345678<br>
+        info@archyberlin.com<br><br>
+        Mauerstrasse 45, 10117 Chennai, Paris</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    ©2025 CSK INC. - SF
+  </footer>
+</body>
+</html>
