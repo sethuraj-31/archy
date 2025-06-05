@@ -1,444 +1,648 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecture Firm</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture Firm</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+     body {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .main-content {
+      background-image: url('1.png');
+      background-size: cover;
+      background-position: center;
+      height: 90vh;
+      color: white;
+    }
+    .services-column li {
+      font-size: 1.125rem;
+      margin-bottom: 0.625rem;
+      position: relative;
+      padding-left: 1.25rem;
+    }
+    .services-column li::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .stat-number {
+      font-size: 6.25rem;
+      font-weight: bold;
+      -webkit-text-stroke: 1px #000;
+      color: transparent;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .stat-label {
+      font-size: 1.25rem;
+    }
+    .elementor-background-overlay {
+      background-image: linear-gradient(180deg, #0A0A0A91 100%, #F2295B00 39%);
+      opacity: 0.77;
+      height: 30vh;
+      font-size: 6.25rem;
+      font-weight: bold;
+      -webkit-text-stroke: 1px #000;
+      color: transparent;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .image-stack {
+      position: relative;
+      width: 400px;
+      height: 500px;
+    }
+    .tab-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.4s ease;
+      z-index: 0;
+    }
+    .tab-image.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 2;
+    }
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    .progress-bar {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .progress-bar span:last-child {
+      flex: 0 0 50px;
+      text-align: right;
+    }
+    .bar {
+      width: 100%;
+      height: 1px;
+      background: #ddd;
+      margin-top: 0.5rem;
+    }
+    .fill {
+      height: 1px;
+      background: #000;
+    }
+    .step {
+      position: relative;
+    }
+    .icon {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+    .icon img {
+      width: 60px;
+      height: 60px;
+    }
+    .icon .number {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: black;
+      color: white;
+      font-weight: bold;
+      font-size: 0.875rem;
+      padding: 4px 8px;
+      border-radius: 50%;
+    }
+    .line {
+      width: 100%;
+      height: 1px;
+      background: #000;
+      position: absolute;
+      top: 30px;
+      left: 100%;
+      z-index: -1;
+    }
+    .step:last-child .line {
+      display: none;
+    }
+    .marquee-container {
+      overflow: hidden;
+      background: #fff;
+      padding: 1.25rem 0;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 2.5rem;
+      animation: scroll-left 20s linear infinite;
+    }
+    .marquee-track img {
+      width: 250px;
+      border-radius: 4px;
+      filter: sepia(40%) brightness(105%);
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .hero {
+      background: url('hero-bg.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    .hero .content {
+      position: relative;
+      z-index: 1;
+    }
+    .project-hero {
+      position: relative;
+    }
+    .project-hero img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+    .project-hero .overlay {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    .team-member img {
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .team-member img:hover {
+      transform: scale(1.05);
+    }
+    .contact-section {
+      background: url('contact-bg.jpg') no-repeat center center/cover;
+    }
+    .title-large {
+      font-size: 7.5rem;
+    }
+    .description-text {
+      font-size: 1.5625rem;
+    }
+    @media screen and (max-width: 768px) {
+      .main-content {
+        height: auto;
+        min-height: 50vh;
+        font-size: 1.5rem;
+      }
+      .title-large {
+        font-size: 3rem;
+      }
+      .description-text {
+        font-size: 1rem;
+      }
+      .stat-number {
+        font-size: 3.75rem;
+      }
+      .stat-label {
+        font-size: 1rem;
+      }
+      .project-hero .overlay {
+        font-size: 2rem;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      .main-content {
+        font-size: 1.25rem;
+      }
+      .title-large {
+        font-size: 2.25rem;
+      }
+      .description-text {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
 </head>
-<link rel="stylesheet" href="style.css">
 <body>
-    <nav>
-        <div class="navbar-container">
-  <div class="navbar-image">
-    <img src="ima.png" alt="ARCHY Logo">
-  </div>
-  <div class="hamburger">☰</div>
-  <ul class="navbar-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="service.html">Services</a></li>
-    <li><a href="project.html">Projects</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="contect.html">Contact</a></li>
-    <li><span class="close-btn">✕</span></li>
-  </ul>
-</div>
-
-        <hr id="hr-tag" style="display: block;">
-    </nav>
-
-    <div class="main-content">
-        <p style="font-size: 100px; color: white;">Transforming ideas into structures</p>
-    </div>
-
-    <div class="text-container">
-        <div class="title-large" >
-            We specialize in these fields.
-            <hr>
-        </div>
-        <div class="paragraph">
-            <div class="service-link-container">
-                <a href="#services" class="service-link">All Services</a>
-            </div>
-            <div class="description-text">
-                The homepage of an architecture website serves as the first impression 
-                for visitors and should provide a compelling overview of the architecture firm 
-                and its offerings.
-            </div>
-        </div>
-    </div>
-
-    <!-- Services List Section -->
-    <div class="services-list-section">
-        <div class="services-column">
-            <ul>
-                <li>+ Feasibility Studies</li>
-                <li>+ Conceptual Design</li>
-                <li>+ Design Development</li>
-            </ul>
-        </div>
-        <div class="services-column">
-            <ul>
-                <li>+ Permitting and Approvals</li>
-                <li>+ Construction Documents</li>
-                <li>+ Bidding and Negotiation</li>
-            </ul>
-        </div>
-        <div class="services-column">
-            <ul>
-                <li>+ Construction Administration</li>
-                <li>+ Post-Occupancy Evaluation</li>
-                <li>+ Project Management</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Statistics Section -->
-    <div class="stats-section">
-        <div class="stat-card">
-            <div class="stat-number">64</div>
-            <div class="stat-label">Clients Around the World</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">124</div>
-            <div class="stat-label">Projects Completed</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">244K</div>
-            <div class="stat-label">Square Feet</div>
-        </div>
-    </div>
-    <div class="elementor-background-overlay">
-        <marquee behavior="" direction="left">Modern Structures   Thinking outside of the box   Construction   Interior Design</marquee>
-    </div>
-    <div class="paragraph">
-            <div class="service-link-container">
-                <a href="#About Us" class="service-link">About Us</a>
-            </div>
-        </div>
-    <div class="text-container">
-        <div class="title-large">
-            "Discover Our Story"
-        </div>
-        <hr>
-    </div>
-    <div class="description-text">
-                Designing the future, today - welcome to our architecture.
-            </div>
-    <div class="tab-container">
-  <div class="image-stack">
-    <img src="modern-glass-skyscrapers-blue-sky-scaled-1000x1000.png" class="tab-image active" />
-    <img src="simone-hutsch-xlGKy9UokjQ-unsplash-1-1000x1000.png" class="tab-image" />
-    <img src="urban-double-exposure-portrait-1000x1000.png" class="tab-image" />
-  </div>
-
-  <div class="content">
-    <div class="tabs">
-      <span class="tab active" data-index="0">History</span>
-      <span class="tab" data-index="1">Mission</span>
-      <span class="tab" data-index="2">Vision</span>
-    </div>
-
-    <div class="tab-content">
-      <div class="tab-panel active">
-        <p>Archy was founded in 1936 in Chicago, USA. The company was established by Louis Skidmore and Nathaniel Owings, and later joined by John O. Merrill.
-
-SOM has been responsible for the design of many notable buildings worldwide, including the Sears Tower (now known as Willis Tower) in Chicago, which was the world's tallest building from 1973 to 1998. The company has also designed the John Hancock Center, One World Trade Center, and Burj Khalifa, which is currently the tallest building in the world.
-
-Throughout its history, SOM has been recognized for its innovative designs and commitment to sustainability. </p>
-      </div>
-      <div class="tab-panel">
-        <p>We believe that good design should not only be aesthetically pleasing, but also functional and environmentally responsible. Our approach to architecture is rooted in a deep understanding of our clients' needs and the context in which we are designing. We work closely with our clients throughout the entire design process to ensure that their vision is realized and that their space is both beautiful and practical.</p>
-      </div>
-      <div class="tab-panel">
-        <p>Ratings and reviews, A numerical rating system and written reviews from clients can be very persuasive in convincing potential clients to hire an architecture firm. These reviews can be posted directly on the architecture firm's website or on third-party review sites such as Yelp or Google Reviews. It's important to respond to all reviews, whether positive or negative, in a professional and respectful manner. This shows that the architecture firm values feedback and is committed to delivering exceptional service.</p>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="ima.png" alt="ARCHY Logo" height="28">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="service.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="project.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="news.html">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
       </div>
     </div>
-
-   <div class="progress-section">
-  <div class="progress-bar">
-    <span>Renovation</span>
-    <span>75%</span>
+  </nav>
+  <!-- Main Content (Hero) -->
+  <div class="main-content d-flex align-items-center justify-content-center text-center">
+    <p class="display-1">Transforming ideas into structures</p>
   </div>
-  <div class="bar"><div class="fill" style="width: 75%;"></div></div>
-
-  <div class="progress-bar">
-    <span>Architecture</span>
-    <span>95%</span>
-  </div>
-  <div class="bar"><div class="fill" style="width: 95%;"></div></div>
-
-  <div class="progress-bar">
-    <span>Functional Spaces</span>
-    <span>85%</span>
-  </div>
-  <div class="bar"><div class="fill" style="width: 85%;"></div></div>
-</div>
-
-  </div>
-</div>
-<div class="timeline">
-  <div class="step">
-    <div class="icon">
-      <img src="2.png" alt="Step 1 Icon">
-      <span class="number">1.</span>
+<div data-aos="fade-right">
+  <!-- Services Intro -->
+  <div class="text-center py-4">
+    <div class="title-large">We specialize in these fields.</div>
+    <hr>
+    <div class="service-link-container text-end px-4">
+      <a href="#services" class="service-link btn btn-link">All Services</a>
     </div>
-    <div class="line"></div>
-    <h3>Consultation and initial meeting</h3>
-    <p>The architecture company meets with the client to discuss their needs, budget, and timeline. They may also visit the site to get a better understanding of the project.</p>
+    <div class="description-text px-4">The homepage of an architecture website serves as the first impression for visitors and should provide a compelling overview of the architecture firm and its offerings.</div>
   </div>
 
-  <div class="step">
-    <div class="icon">
-      <img src="3.png" alt="Step 2 Icon">
-      <span class="number">2.</span>
+  <!-- Services List Section -->
+  <div class="services-list-section py-4">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4 services-column mb-4">
+          <ul class="list-unstyled">
+            <li>Feasibility Studies</li>
+            <li>Conceptual Design</li>
+            <li>Design Development</li>
+          </ul>
+        </div>
+        <div class="col-md-4 services-column mb-4">
+          <ul class="list-unstyled">
+            <li>Permitting and Approvals</li>
+            <li>Construction Documents</li>
+            <li>Bidding and Negotiation</li>
+          </ul>
+        </div>
+        <div class="col-md-4 services-column mb-4">
+          <ul class="list-unstyled">
+            <li>Construction Administration</li>
+            <li>Post-Occupancy Evaluation</li>
+            <li>Project Management</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="line"></div>
-    <h3>Concept design</h3>
-    <p>Based on the client’s requirements, the architecture company creates a concept design that outlines the overall vision for the project. This may include sketches, 3D models, or computer-generated renderings.</p>
   </div>
 
-  <div class="step">
-    <div class="icon">
-      <img src="4.png" alt="Step 3 Icon">
-      <span class="number">3.</span>
+  <!-- Statistics Section -->
+  <div class="stats-section py-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4 stat-card mb-4">
+          <div class="stat-number">64</div>
+          <div class="stat-label">Clients Around the World</div>
+        </div>
+        <div class="col-md-4 stat-card mb-4">
+          <div class="stat-number">124</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="col-md-4 stat-card mb-4">
+          <div class="stat-number">244K</div>
+          <div class="stat-label">Square Feet</div>
+        </div>
+      </div>
     </div>
-    <div class="line"></div>
-    <h3>Design development</h3>
-    <p>Once the client approves the concept design, the architecture company begins to develop detailed drawings and plans. This may involve collaborating with engineers, contractors, and other specialists to ensure that the design is feasible.</p>
   </div>
 
-  <div class="step">
-    <div class="icon">
-      <img src="5.png" alt="Step 4 Icon">
-      <span class="number">4.</span>
+  <!-- Elementor Overlay (Marquee) -->
+  <div class="elementor-background-overlay d-flex align-items-center justify-content-center">
+    <marquee behavior="" direction="left">Modern Structures   Thinking outside of the box   Construction   Interior Design</marquee>
+  </div>
+
+  <!-- About Us Intro -->
+  <div class="text-center py-4">
+    <div class="service-link-container text-end px-4">
+      <a href="#about" class="service-link btn btn-link">About Us</a>
     </div>
-    <div class="line last"></div>
-    <h3>Permitting and approvals</h3>
-    <p>Before construction can begin, the architecture company must obtain the necessary permits and approvals from local authorities. This may involve submitting plans and documents for review and responding to any questions or concerns.</p>
+    <div class="title-large">"Discover Our Story"</div>
+    <hr>
+    <div class="description-text px-4">Designing the future, today - welcome to our architecture.</div>
   </div>
-</div>
 
-<div class="marquee-container">
-  <div class="marquee-track">
-    <img src="6.png" alt="Architecture 1">
-    <img src="7.png" alt="Architecture 2">
-    <img src="8.png" alt="Architecture 3">
-    <img src="9.png" alt="Architecture 4">
-    <img src="10.png" alt="Architecture 5">
-    <!-- Optional: repeat for seamless effect -->
-    <img src="11.png" alt="Architecture 1">
-    <img src="12.png" alt="Architecture 2">
-     <img src="13.png" alt="Architecture 2">
-  </div>
-</div>
-<div class="paragraph">
-            <div class="service-link-container">
-                <a href="Latest-Projects" class="service-link">Latest Projects</a>
+  <!-- Tabbed Content -->
+  <div class="tab-container py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 image-stack">
+          <img src="modern-glass-skyscrapers-blue-sky-scaled-1000x1000.png" class="tab-image active" alt="History Image">
+          <img src="simone-hutsch-xlGKy9UokjQ-unsplash-1-1000x1000.png" class="tab-image" alt="Mission Image">
+          <img src="urban-double-exposure-portrait-1000x1000.png" class="tab-image" alt="Vision Image">
+        </div>
+        <div class="col-md-7 content">
+          <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+              <a class="nav-link active" data-index="0">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-index="1">Mission</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-index="2">Vision</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-panel active">
+              <p>Archy was founded in 1936 in Chicago, USA. The company was established by Louis Skidmore and Nathaniel Owings, and later joined by John O. Merrill. SOM has been responsible for the design of many notable buildings worldwide, including the Sears Tower (now known as Willis Tower) in Chicago, which was the world's tallest building from 1973 to 1998. The company has also designed the John Hancock Center, One World Trade Center, and Burj Khalifa, which is currently the tallest building in the world. Throughout its history, SOM has been recognized for its innovative designs and commitment to sustainability.</p>
             </div>
+            <div class="tab-panel">
+              <p>We believe that good design should not only be aesthetically pleasing, but also functional and environmentally responsible. Our approach to architecture is rooted in a deep understanding of our clients' needs and the context in which we are designing. We work closely with our clients throughout the entire design process to ensure that their vision is realized and that their space is both beautiful and practical.</p>
+            </div>
+            <div class="tab-panel">
+              <p>Ratings and reviews, A numerical rating system and written reviews from clients can be very persuasive in convincing potential clients to hire an architecture firm. These reviews can be posted directly on the architecture firm's website or on third-party review sites such as Yelp or Google Reviews. It's important to respond to all reviews, whether positive or negative, in a professional and respectful manner. This shows that the architecture firm values feedback and is committed to delivering exceptional service.</p>
+            </div>
+          </div>
+          <div class="progress-section mt-4">
+            <div class="progress-bar">
+              <span>Renovation</span>
+              <span>75%</span>
+            </div>
+            <div class="bar"><div class="fill" style="width: 75%;"></div></div>
+            <div class="progress-bar">
+              <span>Architecture</span>
+              <span>95%</span>
+            </div>
+            <div class="bar"><div class="fill" style="width: 95%;"></div></div>
+            <div class="progress-bar">
+              <span>Functional Spaces</span>
+              <span>85%</span>
+            </div>
+            <div class="bar"><div class="fill" style="width: 85%;"></div></div>
+          </div>
         </div>
-    <div class="text-container">
-        <div class="title-large">
-            "Building a legacy at a one time"
-        </div>
-        <hr>
+      </div>
     </div>
-     <div class="description-text">
-                Whether you're an architect, designer, or simply someone with an interest in the built 
-                environment, our latest projects are sure to inspire and challenge you.
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline py-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-3 step mb-4">
+          <div class="icon">
+            <img src="2.png" alt="Step 1 Icon">
+            <span class="number">1.</span>
+          </div>
+          <div class="line"></div>
+          <h3>Consultation and initial meeting</h3>
+          <p>The architecture company meets with the client to discuss their needs, budget, and timeline. They may also visit the site to get a better understanding of the project.</p>
         </div>
-      <div class="hero">
-    <img id="hero-img" src="1.png" alt="The Arches" style="width: 100vw; height:100vh;">
+        <div class="col-md-3 step mb-4">
+          <div class="icon">
+            <img src="3.png" alt="Step 2 Icon">
+            <span class="number">2.</span>
+          </div>
+          <div class="line"></div>
+          <h3>Concept design</h3>
+          <p>Based on the client’s requirements, the architecture company creates a concept design that outlines the overall vision for the project. This may include sketches, 3D models, or computer-generated renderings.</p>
+        </div>
+        <div class="col-md-3 step mb-4">
+          <div class="icon">
+            <img src="4.png" alt="Step 3 Icon">
+            <span class="number">3.</span>
+          </div>
+          <div class="line"></div>
+          <h3>Design development</h3>
+          <p>Once the client approves the concept design, the architecture company begins to develop detailed drawings and plans. This may involve collaborating with engineers, contractors, and other specialists to ensure that the design is feasible.</p>
+        </div>
+        <div class="col-md-3 step mb-4">
+          <div class="icon">
+            <img src="5.png" alt="Step 4 Icon">
+            <span class="number">4.</span>
+          </div>
+          <h3>Permitting and approvals</h3>
+          <p>Before construction can begin, the architecture company must obtain the necessary permits and approvals from local authorities. This may involve submitting plans and documents for review and responding to any questions or concerns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marquee -->
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <img src="6.png" alt="Architecture 1">
+      <img src="7.png" alt="Architecture 2">
+      <img src="8.png" alt="Architecture 3">
+      <img src="9.png" alt="Architecture 4">
+      <img src="10.png" alt="Architecture 5">
+      <img src="11.png" alt="Architecture 1">
+      <img src="12.png" alt="Architecture 2">
+      <img src="13.png" alt="Architecture 3">
+    </div>
+  </div>
+
+  <!-- Latest Projects -->
+  <div class="text-center py-4">
+    <div class="service-link-container text-end px-4">
+      <a href="#projects" class="service-link btn btn-link">Latest Projects</a>
+    </div>
+    <div class="title-large">"Building a legacy at a one time"</div>
+    <hr>
+    <div class="description-text px-4">Whether you're an architect, designer, or simply someone with an interest in the built environment, our latest projects are sure to inspire and challenge you.</div>
+  </div>
+  <div class="project-hero">
+    <img src="1.png" alt="The Arches">
     <div class="overlay">
-      <h1 id="hero-title">The Arches </h1>
+      <h1>The Arches</h1>
     </div>
   </div>
-   <div class="paragraph">
-            <div class="service-link-container">
-                <a href="#Latest News" class="service-link">Latest News</a>
+
+  <!-- Latest News -->
+  <div class="text-center py-4">
+    <div class="service-link-container text-end px-4">
+      <a href="#news" class="service-link btn btn-link">Latest News</a>
+    </div>
+    <div class="title-large">"Latest News"</div>
+    <hr>
+    <div class="description-text px-4">Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.</div>
+  </div>
+  <div id="newsCarousel" class="carousel slide py-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <img src="13.png" alt="Architectural Marvels" class="img-fluid rounded">
+              <div class="meta mt-2">
+                <span>May 18, 2023</span> / <span>News</span>
+              </div>
+              <h3>Architectural Marvels</h3>
             </div>
+          </div>
         </div>
-    <div class="text-container">
-        <div class="title-large">
-            "Latest News"
-        </div>
-        <hr>
-    </div>
-    <div class="description-text">
-        
-          "Our team is comprised of experienced architects, designers, and project managers
-           who share a common goal of creating exceptional spaces.
-    </div>
-
-  <div class="slider-container">
-    
-    <div class="slider" id="slider">
-      <div class="slide">
-        <img src="13.png" alt="Architectural Marvels">
-        <div class="meta">
-          <span>May 18, 2023</span> / <span>News</span>
-        </div>
-        <h3>Architectural Marvels</h3>
       </div>
-
-      <div class="slide">
-        <img src="6.png" alt="Modern Architecture">
-        <div class="meta">
-          <span>May 15, 2023</span> / <span>Insights</span>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <img src="6.png" alt="Modern Architecture" class="img-fluid rounded">
+              <div class="meta mt-2">
+                <span>May 15, 2023</span> / <span>Insights</span>
+              </div>
+              <h3>Exploring the Evolution of Modern Architecture</h3>
+            </div>
+          </div>
         </div>
-        <h3>Exploring the Evolution of Modern Architecture</h3>
       </div>
-
-      <div class="slide">
-        <img src="7.png" alt="White Architecture">
-        <div class="meta">
-          <span>May 12, 2023</span> / <span>Insights</span>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <img src="7.png" alt="White Architecture" class="img-fluid rounded">
+              <div class="meta mt-2">
+                <span>May 12, 2023</span> / <span>Insights</span>
+              </div>
+              <h3>The Evolution of Modern Architecture</h3>
+            </div>
+          </div>
         </div>
-        <h3>The Evolution of Modern Architecture</h3>
       </div>
-    </div>
-    <div class="slide">
-        <img src="8.png" alt="White Architecture">
-        <div class="meta">
-          <span>May 12, 2023</span> / <span>Insights</span>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <img src="8.png" alt="White Architecture" class="img-fluid rounded">
+              <div class="meta mt-2">
+                <span>May 12, 2023</span> / <span>Insights</span>
+              </div>
+              <h3>Architectural Heritage</h3>
+            </div>
+          </div>
         </div>
-        <h3>Architectural Heritage</h3>
       </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-    <div class="text-container">
-        <div class="title-large">
-            "Meet the team behind the designs"
-        </div>
-        <hr>
-    </div>
-    <div class="description-text">
-        
-        "Our team is comprised of experienced architects, designers, and project
-         managers who share a common goal of creating exceptional spaces."
-    </div>
-    
 
-  <section class="team-section">
-    <div class="team-member">
-      <img src="14.png" alt="Team Member 1">
-      <pre>Alisson Taylor
-Team Manage</pre>
-    </div>
-    <div class="team-member">
-      <img src="15.png" alt="Team Member 2">
-      <pre>Roger Craig
+  <!-- Team Section -->
+  <div class="text-center py-4">
+    <div class="title-large">"Meet the team behind the designs"</div>
+    <hr>
+    <div class="description-text px-4">Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.</div>
+  </div>
+  <section class="team-section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-4 team-member mb-4 text-center">
+          <img src="14.png" alt="Team Member 1" class="img-fluid">
+          <pre>Alisson Taylor
+Team Manager</pre>
+        </div>
+        <div class="col-md-4 team-member mb-4 text-center">
+          <img src="15.png" alt="Team Member 2" class="img-fluid">
+          <pre>Roger Craig
 CEO</pre>
-    </div>
-    <div class="team-member">
-      <img src="16.png" alt="Team Member 3">
-      <pre>Linda Cooper
+        </div>
+        <div class="col-md-4 team-member mb-4 text-center">
+          <img src="16.png" alt="Team Member 3" class="img-fluid">
+          <pre>Linda Cooper
 CTO</pre>
-    </div>
-  </section>
-    <div class="paragraph">
-            <div class="service-link-container">
-                <a href="Contact Us" class="service-link">Contact Us</a>
-            </div>
         </div>
-    <div class="text-container">
-        <div class="title-large">
-            "Stay Connected"
+      </div>
+    </div>
+  </section>
+  <div class="text-center py-4">
+    <div class="service-link-container text-end px-4">
+      <a href="contact.html" class="service-link btn btn-link">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- Stay Connected -->
+  <div class="text-center py-4">
+    <div class="title-large">"Stay Connected"</div>
+    <hr>
+    <div class="description-text px-4">Stay connected with our team and never miss a design update, industry news, or special offer. Join our community of design enthusiasts.</div>
+  </div>
+
+  <!-- Call-to-Action Hero -->
+<section class="hero d-flex align-items-center justify-content-center text-center text-white" style="height: 75vh; background: url('6.png') no-repeat center center/cover; position: relative;">
+  <div class="content" style="position: relative; z-index: 1;">
+    <h1>Have a project in mind?</h1>
+    <p>Do not hesitate to say Hello</p>
+    <a href="index.html" class="btn btn-outline-light rounded-pill px-4">Let's Talk <span>➝</span></a>
+  </div>
+  <div style="content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 0;"></div>
+</section>
+
+  <!-- Contact Section -->
+  <section class="contact-section py-5">
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col-md-4 office mb-4 bg-white bg-opacity-75 p-4 rounded">
+          <h3>Bangalore Office</h3>
+          <p>555-1234<br>info@csk.com<br>123 Main Street, Suite 200 City: Chennai<br>State: Tamilnadu</p>
         </div>
-        <hr>
-    </div>
-    <div class="description-text">
-        
-          "Stay connected with our team and never miss a design update, industry news, or special offer.
-           Join our community of design enthusiasts."
-.
-    </div>
-    <section class="hero">
-    <div class="content">
-      <h1>Have a project in mind?</h1>
-      <p>Do not hesitate to say Hello</p>
-      <a href="#" class="cta-button">Let's Talk <span>➝</span></a>
-    </div>
-  </section>
-  <section class="contact-section">
-    <div class="contact-container">
-      <div class="office">
-        <h3>Bangalore Office</h3>
-        <p>555-1234<br>
-        info@csk .com<br><br>
-        123 Main Street, Suite 200 City:Chennai<br>
-        State: Tamilnadu</p>
-      </div>
-
-      <div class="office">
-        <h3>Egmore Office</h3>
-        <p>+33 1 23 45 67 89<br>
-        info@archyparis.com<br><br>
-        123 Rue de la Paix, 75002 Chennai, Egmore</p>
-      </div>
-
-      <div class="office">
-        <h3>CHENNAI PARIS</h3>
-        <p>+49 30 12345678<br>
-        info@archyberlin.com<br><br>
-        Mauerstrasse 45, 10117 Chennai, Paris</p>
+        <div class="col-md-4 office mb-4 bg-white bg-opacity-75 p-4 rounded">
+          <h3>Egmore Office</h3>
+          <p>+33 1 23 45 67 89<br>info@archyparis.com<br>123 Rue de la Paix, 75002 Chennai, Egmore</p>
+        </div>
+        <div class="col-md-4 office mb-4 bg-white bg-opacity-75 p-4 rounded">
+          <h3>CHENNAI PARIS</h3>
+          <p>+49 30 12345678<br>info@archyberlin.com<br>Mauerstrasse 45, 10117 Chennai, Paris</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
+  <!-- Footer -->
+  <footer class="footer text-center py-3 bg-light">
     ©2025 CSK INC. - SF
   </footer>
+</div>
+  <!-- Bootstrap JS and Popper.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript for Tabs -->
+  <script>
+    const tabs = document.querySelectorAll(".nav-link");
+    const panels = document.querySelectorAll(".tab-panel");
+    const images = document.querySelectorAll(".tab-image");
 
-  
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-const navbarLinks = document.querySelector('.navbar-links');
-const closeBtn = document.querySelector('.close-btn');
-
-hamburger.addEventListener('click', () => {
-  navbarLinks.classList.add('show');
-});
-
-closeBtn.addEventListener('click', () => {
-  navbarLinks.classList.remove('show');
-});
-
-navbarLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navbarLinks.classList.remove('show');
-  });
-});
-
-        const tabs = document.querySelectorAll(".tab");
-  const panels = document.querySelectorAll(".tab-panel");
-  const images = document.querySelectorAll(".tab-image");
-
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      const index = tab.dataset.index;
-
-      // Activate tab
-      tabs.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-
-      // Show correct panel
-      panels.forEach(p => p.classList.remove("active"));
-      panels[index].classList.add("active");
-
-      // Show corresponding image
-      images.forEach(img => img.classList.remove("active"));
-      images[index].classList.add("active");
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        const index = tab.getAttribute("data-index");
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        panels.forEach(p => p.classList.remove("active"));
+        panels[index].classList.add("active");
+        images.forEach(img => img.classList.remove("active"));
+        images[index].classList.add("active");
+      });
     });
-  });
-  function changeSlide(imageSrc, title) {
-  document.getElementById('hero-img').src = imageSrc;
-  document.getElementById('hero-title').textContent = title;
-}
-  let currentSlide = 0;
-const totalSlides = 3;
-const slider = document.getElementById('slider');
-const dots = document.querySelectorAll('.dot');
-
-function scrollSlider(direction) {
-  currentSlide += direction;
-  if (currentSlide < 0) currentSlide = 0;
-  if (currentSlide > totalSlides - 1) currentSlide = totalSlides - 1;
-
-  slider.scrollTo({
-    left: currentSlide * 320,
-    behavior: 'smooth'
-  });
-
-  updateDots();
-}
-
-function updateDots() {
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index === currentSlide);
-  });
-}
-
-    </script>
+  </script>
 </body>
 </html>

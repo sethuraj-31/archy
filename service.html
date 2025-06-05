@@ -1,202 +1,320 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Our Services with Bootstrap</title>
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services</title>
   <!-- Bootstrap CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
   <style>
     body {
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      background-size: cover;
-      background-position: center;
     }
-    ul.custom-list li::before {
+    .background-image {
+      background: url('csk.png') center/cover no-repeat;
+      height: 60vh;
+    }
+    .hero {
+      height: 75vh;
+      background: url('hero-bg.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    .hero .content {
+      position: relative;
+      z-index: 1;
+    }
+    .contact-section {
+      background: url('contact-bg.jpg') no-repeat center center/cover;
+    }
+    .services-list h2 {
+      font-size: 3rem;
+    }
+    .services-list ul {
+      columns: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .services-list li {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 20px;
+    }
+    .services-list li::before {
       content: "+";
-      display: inline-block;
-      margin-right: 0.5rem;
+      position: absolute;
+      left: 0;
       font-weight: bold;
     }
-    /* Two column list with gap on desktop, single column on mobile */
-    @media (min-width: 768px) {
-      ul.custom-list {
-        column-count: 2;
-        column-gap: 3rem;
+    .service-content h3 {
+      font-size: 1.75rem;
+    }
+    .service-image img {
+      border-radius: 8px;
+    }
+    .team-member img {
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .team-member img:hover {
+      transform: scale(1.05);
+    }
+    .title-large {
+      font-size: 7.5rem;
+    }
+    .description-text {
+      font-size: 1.5625rem;
+    }
+    @media screen and (max-width: 768px) {
+      .title-large {
+        font-size: 3rem;
+      }
+      .description-text {
+        font-size: 1rem;
       }
     }
-    @media (max-width: 767.98px) {
-      ul.custom-list {
-        column-count: 1;
+    @media screen and (max-width: 480px) {
+      .title-large {
+        font-size: 2.25rem;
       }
-    }
-    /* Hero image height */
-    .hero-image {
-      height: 60vh;
-      background-size: cover;
-      background-position: center;
+      .description-text {
+        font-size: 0.875rem;
+      }
     }
   </style>
 </head>
-<body class="bg-white">
-
+<body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-md navbar-light bg-white shadow sticky-top">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="ima.png" alt="ARCHY Logo" height="28" />
+        <img src="ima.png" alt="ARCHY Logo" height="28">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav fw-semibold text-secondary">
+        <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link active" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#about">About Us</a>
+            <a class="nav-link" href="about.html">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#services">Services</a>
+            <a class="nav-link" href="service.html">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#projects">Projects</a>
+            <a class="nav-link" href="project.html">Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="news.html">News</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contect.html">Contact</a>
+            <a class="nav-link" href="contact.html">Contact</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <hr class="my-4" />
-
   <!-- Services Intro -->
-  <section id="services" class="text-center px-3 px-md-0">
-    <div class="hero-image mb-5" style="background-image: url('csk.png');"></div>
-    <h2 class="display-4 fw-bold mb-5">Our Services</h2>
-    <ul class="custom-list mx-auto text-secondary fs-5" style="max-width: 600px;">
-      <li>Construction Administration</li>
-      <li>Post-Occupancy Evaluation</li>
-      <li>Project Management</li>
-      <li>Feasibility Studies</li>
-      <li>Permitting and Approvals</li>
-      <li>Construction Documents</li>
-      <li>Bidding and Negotiation</li>
-      <li>Conceptual Design</li>
-    </ul>
+  <section class="services-intro py-5 bg-white text-center">
+    <div class="background-image"></div>
+    <div class="services-list py-5">
+      <h2>Our Services</h2>
+      <ul class="list-unstyled">
+        <li>Construction Administration</li>
+        <li>Post-Occupancy Evaluation</li>
+        <li>Project Management</li>
+        <li>Feasibility Studies</li>
+        <li>Permitting and Approvals</li>
+        <li>Construction Documents</li>
+        <li>Bidding and Negotiation</li>
+        <li>Conceptual Design</li>
+      </ul>
+    </div>
   </section>
 
-  <!-- Services Details -->
-  <section class="container py-5">
-
-    <!-- Service 1 -->
-    <div class="row align-items-center mb-5">
-      <div class="col-md-6">
-        <img src="construction_admin.png" alt="Construction Administration" class="img-fluid rounded shadow" />
-      </div>
-      <div class="col-md-6 mt-4 mt-md-0">
-        <h3 class="mb-4 fw-semibold">Construction Administration</h3>
-
-        <div class="accordion" id="accordionConstructionAdmin">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
-                aria-expanded="false" aria-controls="collapseOne">
-                Scope and Coordination
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionConstructionAdmin">
-              <div class="accordion-body text-secondary">
-                Coordination of project team and on-site observation to ensure construction adheres to plans and specifications.
+  <!-- Service Detail -->
+  <section class="service-detail py-5">
+    <div class="container">
+      <div class="row align-items-center mb-5">
+        <div class="col-md-6 service-image">
+          <img src="csk.png" alt="Architecture White Building" class="img-fluid">
+        </div>
+        <div class="col-md-6 service-content">
+          <h3>Collaborative, innovative, and sustainable architectural design solutions for a better world.</h3>
+          <div class="accordion" id="accordion1">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                  Construction Administration
+                </button>
+              </h2>
+              <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#accordion1">
+                <div class="accordion-body">
+                  Construction administration services are a crucial component of any construction project, and they typically involve overseeing the construction process to ensure that the project is completed according to the client’s specifications, on time, and within budget.
+                </div>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" 
-                aria-expanded="false" aria-controls="collapseTwo">
-                Quality Control
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionConstructionAdmin">
-              <div class="accordion-body text-secondary">
-                Monitoring construction quality and resolving issues promptly.
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                  Post-Occupancy Evaluation
+                </button>
+              </h2>
+              <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordion1">
+                <div class="accordion-body">
+                  Post-occupancy evaluation ensures ongoing satisfaction and identifies future improvement areas.
+                </div>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" 
-                aria-expanded="false" aria-controls="collapseThree">
-                Contract Management
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionConstructionAdmin">
-              <div class="accordion-body text-secondary">
-                Managing construction contracts and handling change orders efficiently.
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                  Project Management
+                </button>
+              </h2>
+              <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordion1">
+                <div class="accordion-body">
+                  Project management includes planning, coordination, and budget control for successful outcomes.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Service 2 -->
-    <div class="row align-items-center mb-5 flex-md-row-reverse">
-      <div class="col-md-6">
-        <img src="post_occupancy.png" alt="Post-Occupancy Evaluation" class="img-fluid rounded shadow" />
-      </div>
-      <div class="col-md-6 mt-4 mt-md-0">
-        <h3 class="mb-4 fw-semibold">Post-Occupancy Evaluation</h3>
-
-        <div class="accordion" id="accordionPostOccupancy">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFour">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" 
-                aria-expanded="false" aria-controls="collapseFour">
-                Performance Analysis
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionPostOccupancy">
-              <div class="accordion-body text-secondary">
-                Assessing building performance after occupancy to identify areas for improvement.
+      <div class="row align-items-center flex-md-row-reverse">
+        <div class="col-md-6 service-content">
+          <h3>Expert services for development and construction.</h3>
+          <div class="accordion" id="accordion2">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                  Permitting and Approvals
+                </button>
+              </h2>
+              <div id="collapse4" class="accordion-collapse collapse show" data-bs-parent="#accordion2">
+                <div class="accordion-body">
+                  Permitting and approvals are a critical aspect of the architectural design process, ensuring that the design meets all applicable codes and standards for smooth execution.
+                </div>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFive">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" 
-                aria-expanded="false" aria-controls="collapseFive">
-                Occupant Feedback
-              </button>
-            </h2>
-            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionPostOccupancy">
-              <div class="accordion-body text-secondary">
-                Gathering feedback from occupants to enhance user experience and satisfaction.
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                  Construction Documents
+                </button>
+              </h2>
+              <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#accordion2">
+                <div class="accordion-body">
+                  Detailed blueprints and specifications for construction teams.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                  Bidding and Negotiation
+                </button>
+              </h2>
+              <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#accordion2">
+                <div class="accordion-body">
+                  Assistance in contractor selection and bid evaluations to ensure competitive pricing.
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-md-6 service-image">
+          <img src="csk.png" alt="Column Architecture Concept" class="img-fluid">
+        </div>
       </div>
     </div>
-
   </section>
 
-  <footer class="text-center text-secondary py-4 border-top small fw-light" style="letter-spacing: 0.1em;">
-    © 2025 ARCHY. All rights reserved.
+  <!-- Team Section -->
+  <div class="text-center py-4">
+    <div class="title-large">"Meet the team behind the designs"</div>
+    <hr>
+    <div class="description-text">"Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces."</div>
+  </div>
+  <section class="team-section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-4 team-member mb-4">
+          <img src="14.png" alt="Team Member 1" class="img-fluid">
+        </div>
+        <div class="col-md-4 team-member mb-4">
+          <img src="15.png" alt="Team Member 2" class="img-fluid">
+        </div>
+        <div class="col-md-4 team-member mb-4">
+          <img src="16.png" alt="Team Member 3" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="text-center py-4">
+    <div class="service-link-container">
+      <a href="contect.html" class="service-link btn btn-link">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- Stay Connected -->
+  <div class="text-center py-4">
+    <div class="title-large">"Stay Connected"</div>
+    <hr>
+    <div class="description-text">"Stay connected with our team and never miss a design update, industry news, or special offer. Join our community of design enthusiasts."</div>
+  </div>
+
+<section class="hero d-flex align-items-center justify-content-center text-center text-white" style="height: 75vh; background: url('6.png') no-repeat center center/cover; position: relative;">
+  <div class="content" style="position: relative; z-index: 1;">
+    <h1>Have a project in mind?</h1>
+    <p>Do not hesitate to say Hello</p>
+    <a href="index.html" class="btn btn-outline-light rounded-pill px-4">Let's Talk <span>➝</span></a>
+  </div>
+  <div style="content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 0;"></div>
+</section>
+
+  <!-- Contact Section -->
+  <section class="contact-section py-5">
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col-md-4 office mb-4 bg-white bg-opacity-75 p-4 rounded">
+          <h3>Bangalore Office</h3>
+          <p>555-1234<br>info@csk.com<br>123 Main Street, Suite 200 City: Chennai<br>State: Tamilnadu</p>
+        </div>
+        <div class="col-md-4 office mb-4 bg-white bg-opacity-75 p-4 rounded">
+          <h3>Egmore Office</h3>
+          <p>+33 1 23 45 67 89<br>info@archyparis.com<br>123 Rue de la Paix, 75002 Chennai, Egmore</p>
+        </div>
+        <div class="col-md-4 office mb-4 bg-white bg-opacity-75 p-4 rounded">
+          <h3>CHENNAI PARIS</h3>
+          <p>+49 30 12345678<br>info@archyberlin.com<br>Mauerstrasse 45, 10117 Chennai, Paris</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center py-3 bg-light">
+    ©2025 CSK INC. - SF
   </footer>
 
-  <!-- Bootstrap JS Bundle CDN (includes Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+  <!-- Bootstrap JS and Popper.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
